@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/main.dart';
+import 'package:flutter_ecommerce/pages/sign_up.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,8 +40,8 @@ class _LoginState extends State<Login> {
     isLoggedin = await googleSignIn.isSignedIn();
 
     if (isLoggedin) {
-      // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     }
 
     setState(() {
@@ -170,6 +171,12 @@ class _LoginState extends State<Login> {
                                   )),
                               keyboardType: TextInputType.visiblePassword,
                               controller: _passwordTextEdigingController,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'password can not be empty';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ),
@@ -191,6 +198,19 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                         ),
+                        Divider(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUp()));
+                          },
+                          child: Text(
+                            "Sign Up!",
+                            style: TextStyle(color: Colors.red, fontSize: 18.0),
+                          ),
+                        )
                       ],
                     ))
               ],

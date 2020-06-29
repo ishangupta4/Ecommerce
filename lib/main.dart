@@ -7,6 +7,7 @@ void main() {
     new MaterialApp(
       home: Login(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(accentColor: Colors.red.shade900),
     ),
   );
 }
