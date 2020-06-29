@@ -16,6 +16,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final GoogleSignIn googleSignIn = new GoogleSignIn();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailTextEditingController = TextEditingController();
+  TextEditingController _passwordTextEdigingController =
+      TextEditingController();
   SharedPreferences preferences;
   bool loading = false;
   bool isLoggedin = false;
@@ -35,8 +39,8 @@ class _LoginState extends State<Login> {
     isLoggedin = await googleSignIn.isSignedIn();
 
     if (isLoggedin) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => HomePage()));
     }
 
     setState(() {
@@ -98,30 +102,98 @@ class _LoginState extends State<Login> {
     }
   }
 
+  String validateEmail(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value))
+      return 'Enter Valid Email';
+    else
+      return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: new Text(
-          "Login",
-          style: TextStyle(color: Colors.red.shade900),
-        ),
-        elevation: 0.1,
-      ),
+      backgroundColor: Colors.blueGrey.withOpacity(0.3),
       body: Stack(
         children: <Widget>[
-          Center(
-            child: FlatButton(
-              color: Colors.red.shade900,
-              onPressed: () {
-                HandleSignIn();
-              },
-              child: Text(
-                "Sign in with google",
-                style: TextStyle(color: Colors.white),
-              ),
+          Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(80.0),
+                  child: Icon(
+                    Icons.shop,
+                    size: 80,
+                    color: Colors.redAccent,
+                  ),
+                ),
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white.withOpacity(0.3),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  labelText: "Email",
+                                  labelStyle: TextStyle(color: Colors.yellow),
+                                  isDense: true,
+                                  icon: Icon(
+                                    Icons.email,
+                                    color: Colors.redAccent,
+                                  )),
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailTextEditingController,
+                              validator: validateEmail,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white.withOpacity(0.3),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  labelStyle: TextStyle(color: Colors.yellow),
+                                  labelText: "password",
+                                  isDense: true,
+                                  icon: Icon(
+                                    Icons.lock_outline,
+                                    color: Colors.redAccent,
+                                  )),
+                              keyboardType: TextInputType.visiblePassword,
+                              controller: _passwordTextEdigingController,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.blue.withOpacity(0.8),
+                            child: MaterialButton(
+                              onPressed: () {},
+                              minWidth: MediaQuery.of(context).size.width,
+                              child: Text(
+                                "Login",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ))
+              ],
             ),
           ),
           Visibility(
@@ -137,6 +209,21 @@ class _LoginState extends State<Login> {
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FlatButton(
+            color: Colors.red.shade900,
+            onPressed: () {
+              HandleSignIn();
+            },
+            child: Text(
+              "Sign in with google",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
       ),
     );
   }
