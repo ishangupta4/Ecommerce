@@ -21,8 +21,7 @@ This cross-platform application is built completely in flutter and uses firebase
 
 **Here are some of the screenshots attached**
 
-<img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/1.png?token=AL22WHEZCN6UI5EJQVMOEI27AVLO4" alt="Input Distance" width="255"/>..
+<img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/1.png?token=AL22WHEZCN6UI5EJQVMOEI27AVLO4" alt="Input Distance" width="255"/>.
 <img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/2.png?token=AL22WHCMVWQVXTPVMJFR5QK7AVLTI" width="255"/>.
 <img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/3.png?token=AL22WHAOCXXWAYHPFDYKXGC7AVLYU" width="255"/>.
-<img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/4.png?token=AL22WHAKR7VDSOMHZ7X74YS7AVL3C" width="190"/>.
-<img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/5.png?token=AL22WHGZ4MWCYEOLP556E4C7AVMD2" width="240"/>
+<img src="https://raw.githubusercontent.com/ishangupta4/Ecommerce/master/screenshots/4.png?token=AL22WHAKR7VDSOMHZ7X74YS7AVL3C" width="200"/>.
